@@ -8,6 +8,7 @@ class Movies extends React.Component {
 
     state = {
         movies: getMovies(),
+        currentPage: 1,
         pageSize: 4
     };
 
@@ -34,6 +35,7 @@ class Movies extends React.Component {
     render() { 
 
         const { length:count } = this.state.movies;
+        const { pageSize, currentPage } = this.state;
 
         if(count === 0 )
             return <p>There are  not data is the datatbase</p>
@@ -72,9 +74,10 @@ class Movies extends React.Component {
             </table>
 
             <Pagination
-                itemsCount ={count} 
-                pageSize = {this.state.pageSize}
-                onPageChange = {this.handelPageChange}
+                itemsCount ={ count } 
+                currentPage = { currentPage }
+                pageSize = { pageSize }
+                onPageChange = { this.handelPageChange }
             />
         </react.Fragment>
         );
